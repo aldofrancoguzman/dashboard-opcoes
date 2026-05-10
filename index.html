@@ -1,5 +1,271 @@
 <!DOCTYPE html>
-<html>
-<head><meta charset="UTF-8"><title>Carregando...</title></head>
-<body><p>Aguardando dados do n8n...</p></body>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Opções B3 — Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d0d12;--surface:#16161f;--surface2:#1e1e2a;--border:#ffffff10;
+  --green:#00d97e;--green-dim:#00d97e22;--red:#ff5757;--red-dim:#ff575722;
+  --amber:#f5a623;--amber-dim:#f5a62322;--blue:#4da6ff;--blue-dim:#4da6ff22;
+  --text:#e2e2ec;--text2:#7b7b96;--accent:#7c5cfc;
+  --font:'IBM Plex Sans',sans-serif;--mono:'IBM Plex Mono',monospace;
+}
+body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh}
+#login{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:100}
+.lbox{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:40px;width:340px;display:flex;flex-direction:column;gap:16px}
+.ltitle{font-size:20px;font-weight:500}.ltitle span{color:var(--green)}
+.linput{background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:var(--mono);font-size:13px;padding:11px 14px;outline:none;width:100%;transition:border-color .2s}
+.linput:focus{border-color:var(--accent)}
+.lbtn{background:var(--accent);border:none;border-radius:8px;color:#fff;cursor:pointer;font-family:var(--font);font-size:13px;font-weight:500;padding:11px}
+.lerr{color:var(--red);font-size:12px;display:none}
+#app{display:none}
+header{background:var(--surface);border-bottom:1px solid var(--border);padding:14px 28px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10}
+.hlogo{font-size:15px;font-weight:500}.hlogo span{color:var(--green)}
+.hmeta{font-family:var(--mono);font-size:11px;color:var(--text2);text-align:right}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border-bottom:1px solid var(--border)}
+.stat{background:var(--surface);padding:14px 20px}
+.stat-lbl{font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.stat-val{font-family:var(--mono);font-size:20px;font-weight:500}
+.sv-blue{color:var(--blue)}.sv-green{color:var(--green)}.sv-amber{color:var(--amber)}
+.filters{padding:14px 28px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;border-bottom:1px solid var(--border);background:var(--surface2)}
+.flabel{font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em}
+.chips{display:flex;gap:4px;flex-wrap:wrap}
+.chip{background:transparent;border:1px solid var(--border);border-radius:20px;color:var(--text2);cursor:pointer;font-family:var(--font);font-size:11px;font-weight:500;padding:4px 12px;transition:all .12s}
+.chip:hover{border-color:rgba(255,255,255,.2);color:var(--text)}
+.chip.active{background:var(--surface);border-color:rgba(255,255,255,.2);color:var(--text)}
+.chip.call.active{background:var(--green-dim);border-color:var(--green);color:var(--green)}
+.chip.put.active{background:var(--red-dim);border-color:var(--red);color:var(--red)}
+.fdiv{width:1px;height:20px;background:var(--border)}
+.fsort{background:transparent;border:1px solid var(--border);border-radius:8px;color:var(--text2);font-family:var(--font);font-size:11px;padding:4px 10px;cursor:pointer}
+.grid{padding:20px 28px;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color .15s,transform .15s}
+.card:hover{border-color:rgba(255,255,255,.15);transform:translateY(-1px)}
+.card-head{padding:12px 14px;display:flex;align-items:flex-start;justify-content:space-between;border-bottom:1px solid var(--border)}
+.card-acao{font-size:14px;font-weight:500}
+.card-ticker{font-family:var(--mono);font-size:10px;color:var(--text2);margin-top:2px}
+.badges{display:flex;gap:4px;align-items:center}
+.badge{font-size:9px;font-weight:500;padding:3px 8px;border-radius:6px}
+.badge-call{background:var(--green-dim);color:var(--green)}
+.badge-put{background:var(--red-dim);color:var(--red)}
+.badge-am{background:var(--amber-dim);color:var(--amber)}
+.card-body{padding:12px 14px;display:flex;flex-direction:column;gap:10px}
+.taxa-row{display:flex;align-items:baseline;gap:6px}
+.taxa-big{font-family:var(--mono);font-size:26px;font-weight:500;color:var(--green)}
+.taxa-sub{font-size:11px;color:var(--text2)}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.info-item{display:flex;flex-direction:column;gap:2px}
+.info-lbl{font-size:9px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em}
+.info-val{font-family:var(--mono);font-size:12px;font-weight:500}
+.calc-box{background:var(--surface2);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:3px}
+.calc-row{display:flex;justify-content:space-between;font-size:11px}
+.calc-lbl{color:var(--text2)}.calc-val{font-family:var(--mono)}
+.calc-sep{border-top:1px solid var(--border);margin:3px 0}
+.calc-total .calc-lbl{color:var(--green);font-weight:500}
+.calc-total .calc-val{color:var(--green);font-weight:500}
+.gregas{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.grega{display:flex;flex-direction:column;align-items:center;padding:6px 2px;background:var(--surface2);border-radius:6px}
+.grega-lbl{font-size:9px;color:var(--text2);text-transform:uppercase;letter-spacing:.04em}
+.grega-val{font-family:var(--mono);font-size:11px;font-weight:500}
+.score-row{display:flex;align-items:center;gap:8px}
+.sbar{flex:1;height:3px;background:var(--surface2);border-radius:2px;overflow:hidden}
+.sfill{height:100%;border-radius:2px;transition:width .4s}
+.slbl{font-family:var(--mono);font-size:11px;font-weight:500;min-width:28px;text-align:right}
+.tags{display:flex;gap:4px;flex-wrap:wrap}
+.tag{font-size:9px;font-weight:500;padding:2px 8px;border-radius:4px}
+.tag-ok{background:var(--green-dim);color:var(--green)}
+.tag-warn{background:var(--amber-dim);color:var(--amber)}
+.tag-bad{background:var(--red-dim);color:var(--red)}
+.tag-inf{background:var(--surface2);color:var(--text2)}
+.empty{text-align:center;padding:60px 20px;color:var(--text2);grid-column:1/-1;font-size:14px}
+.loading{text-align:center;padding:60px 20px;color:var(--text2);grid-column:1/-1;font-size:14px}
+.foot{text-align:center;padding:20px;font-family:var(--mono);font-size:10px;color:var(--text2);border-top:1px solid var(--border);margin-top:8px}
+</style>
+</head>
+<body>
+
+<div id="login">
+  <div class="lbox">
+    <div class="ltitle">Opções <span>B3</span></div>
+    <input type="password" id="pwd" class="linput" placeholder="Senha de acesso"/>
+    <div id="lerr" class="lerr">Senha incorreta.</div>
+    <button class="lbtn" onclick="auth()">Entrar</button>
+  </div>
+</div>
+
+<div id="app">
+  <header>
+    <div class="hlogo">Opções <span>B3</span></div>
+    <div class="hmeta"><div id="ts"></div><div id="tot"></div></div>
+  </header>
+  <div class="stats">
+    <div class="stat"><div class="stat-lbl">Oportunidades</div><div class="stat-val sv-blue" id="s1">—</div></div>
+    <div class="stat"><div class="stat-lbl">Melhor taxa/mês</div><div class="stat-val sv-green" id="s2">—</div></div>
+    <div class="stat"><div class="stat-lbl">Superam CDI</div><div class="stat-val sv-green" id="s3">—</div></div>
+    <div class="stat"><div class="stat-lbl">CDI mensal</div><div class="stat-val sv-amber" id="s4">—</div></div>
+  </div>
+  <div class="filters">
+    <span class="flabel">Tipo</span>
+    <div class="chips" id="tipo-chips">
+      <button class="chip call active" data-t="CALL">🟢 Call</button>
+      <button class="chip put active" data-t="PUT">🔴 Put</button>
+    </div>
+    <div class="fdiv"></div>
+    <span class="flabel">Ativo</span>
+    <div class="chips" id="ativo-chips"></div>
+    <div class="fdiv"></div>
+    <span class="flabel">Ordenar</span>
+    <select class="fsort" id="sort">
+      <option value="taxa_mes">Taxa/mês</option>
+      <option value="score">Score</option>
+      <option value="premio">Prêmio líquido</option>
+      <option value="dias">Dias até venc.</option>
+    </select>
+  </div>
+  <div class="grid" id="grid"><div class="loading">Carregando dados...</div></div>
+  <div class="foot" id="foot"></div>
+</div>
+
+<script>
+const SENHA = 'btg2026';
+const DADOS_URL = 'https://aldofrancoguzman.github.io/dashboard-opcoes/dados.json';
+
+let DADOS = null;
+let tipos = new Set(['CALL','PUT']);
+let ativos = new Set();
+let sortK = 'taxa_mes';
+
+function auth() {
+  if (document.getElementById('pwd').value === SENHA) {
+    document.getElementById('login').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    carregarDados();
+  } else {
+    document.getElementById('lerr').style.display = 'block';
+  }
+}
+document.getElementById('pwd').addEventListener('keydown', e => { if (e.key === 'Enter') auth(); });
+
+async function carregarDados() {
+  try {
+    const resp = await fetch(DADOS_URL + '?t=' + Date.now());
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    DADOS = await resp.json();
+    init();
+  } catch(e) {
+    document.getElementById('grid').innerHTML =
+      '<div class="empty">Erro ao carregar dados: ' + e.message + '<br>Verifique se o n8n já publicou o dados.json</div>';
+  }
+}
+
+function init() {
+  document.getElementById('ts').textContent = 'Atualizado: ' + DADOS.atualizado_em;
+  document.getElementById('s4').textContent = (DADOS.cdi_mensal || 0).toFixed(2) + '%';
+  document.getElementById('foot').textContent = 'Dados gerados automaticamente pelo n8n · ' + DADOS.atualizado_em;
+
+  const as = [...new Set((DADOS.oportunidades || []).map(d => d.Acao))].sort();
+  as.forEach(a => {
+    ativos.add(a);
+    const b = document.createElement('button');
+    b.className = 'chip active'; b.textContent = a; b.dataset.a = a;
+    b.onclick = () => {
+      if (ativos.has(a)) ativos.delete(a); else ativos.add(a);
+      b.classList.toggle('active', ativos.has(a)); render();
+    };
+    document.getElementById('ativo-chips').appendChild(b);
+  });
+
+  document.querySelectorAll('#tipo-chips .chip').forEach(b => {
+    b.onclick = () => {
+      const t = b.dataset.t;
+      if (tipos.has(t)) tipos.delete(t); else tipos.add(t);
+      b.classList.toggle('active', tipos.has(t)); render();
+    };
+  });
+  document.getElementById('sort').onchange = e => { sortK = e.target.value; render(); };
+  render();
+}
+
+function fmt(n, d=2)  { return n != null ? Number(n).toLocaleString('pt-BR', {minimumFractionDigits:d, maximumFractionDigits:d}) : '—'; }
+function fmtN(n)      { return n != null ? Number(n).toLocaleString('pt-BR') : '0'; }
+function fmtD(d)      { if (!d) return '—'; const p = d.split('-'); return p.length === 3 ? p[2]+'/'+p[1] : d; }
+function sc(s)        { return s >= 7 ? '#00d97e' : s >= 4 ? '#f5a623' : '#ff5757'; }
+
+function render() {
+  const sv = { taxa_mes: d=>d.Taxa_Mes, score: d=>d.Score, premio: d=>d.Premio_Liquido, dias: d=>-d.Dias_ate_Venc };
+  let dados = (DADOS.oportunidades || []).filter(d => tipos.has(d.Tipo) && ativos.has(d.Acao));
+  dados.sort((a, b) => (sv[sortK](b)||0) - (sv[sortK](a)||0));
+
+  document.getElementById('s1').textContent = dados.length;
+  document.getElementById('s3').textContent = dados.filter(d => d.CDI === 'SUPERA').length + '/' + dados.length;
+  document.getElementById('tot').textContent = dados.length + ' oportunidades';
+  const m = dados.reduce((x, d) => Math.max(x, d.Taxa_Mes||0), 0);
+  document.getElementById('s2').textContent = m > 0 ? fmt(m) + '%' : '—';
+
+  const grid = document.getElementById('grid');
+  grid.innerHTML = '';
+
+  if (!dados.length) {
+    grid.innerHTML = '<div class="empty">Nenhuma oportunidade com os filtros selecionados</div>';
+    return;
+  }
+
+  dados.forEach(d => {
+    const isC = d.Tipo === 'CALL';
+    const s = d.Score || 0;
+    const extra = isC && d.Ganho_Total
+      ? '<div class="info-item"><div class="info-lbl">Ganho total</div><div class="info-val" style="color:var(--green)">R$ '+fmt(d.Ganho_Total)+'</div></div>'
+      : !isC && d.Garantia_Total
+      ? '<div class="info-item"><div class="info-lbl">Garantia</div><div class="info-val">R$ '+fmt(d.Garantia_Total)+'</div></div>'
+      : '';
+
+    const gregas = d.Delta != null
+      ? '<div class="gregas">'
+        + '<div class="grega"><div class="grega-lbl">Delta</div><div class="grega-val">'+fmt(d.Delta,3)+'</div></div>'
+        + '<div class="grega"><div class="grega-lbl">Theta</div><div class="grega-val">'+(d.Theta!=null?fmt(d.Theta,4):'—')+'</div></div>'
+        + '<div class="grega"><div class="grega-lbl">POE</div><div class="grega-val">'+(d.Poe!=null?fmt(d.Poe,1)+'%':'—')+'</div></div>'
+        + '<div class="grega"><div class="grega-lbl">IV</div><div class="grega-val">'+(d.IV!=null?fmt(d.IV,1)+'%':'—')+'</div></div>'
+        + '</div>'
+      : '';
+
+    const c = document.createElement('div');
+    c.className = 'card';
+    c.innerHTML =
+      '<div class="card-head">'
+        + '<div><div class="card-acao">'+d.Acao+'</div><div class="card-ticker">'+d.Ticker_Opcao+'</div></div>'
+        + '<div class="badges"><span class="badge '+(isC?'badge-call':'badge-put')+'">'+(isC?'CALL':'PUT')+'</span>'
+        + (d.Estilo==='AMERICAN'?'<span class="badge badge-am">AM</span>':'')+'</div>'
+      + '</div>'
+      + '<div class="card-body">'
+        + '<div class="taxa-row"><span class="taxa-big">'+fmt(d.Taxa_Mes)+'%</span><span class="taxa-sub">/mês · '+fmt(d.Taxa_Dia,3)+'%/dia</span></div>'
+        + '<div class="info-grid">'
+          + '<div class="info-item"><div class="info-lbl">Strike</div><div class="info-val">R$ '+fmt(d.Strike)+' <span style="font-size:9px;color:var(--text2)">'+(d.Dist_Strike||'')+'</span></div></div>'
+          + '<div class="info-item"><div class="info-lbl">Vencimento</div><div class="info-val">'+fmtD(d.Venc)+' <span style="font-size:9px;color:var(--text2)">('+d.Dias_ate_Venc+'d)</span></div></div>'
+          + '<div class="info-item"><div class="info-lbl">Preço atual</div><div class="info-val">R$ '+fmt(d.Preco_Atual)+'</div></div>'
+          + extra
+        + '</div>'
+        + '<div class="calc-box">'
+          + '<div class="calc-row"><span class="calc-lbl">Prêmio bruto</span><span class="calc-val">R$ '+fmt(d.Premio_Bruto)+'</span></div>'
+          + '<div class="calc-row"><span class="calc-lbl">IR (15%)</span><span class="calc-val">− R$ '+fmt(d.IR)+'</span></div>'
+          + '<div class="calc-row"><span class="calc-lbl">Corretagem (0,1%)</span><span class="calc-val">− R$ '+fmt(d.Corretagem)+'</span></div>'
+          + '<div class="calc-sep"></div>'
+          + '<div class="calc-row calc-total"><span class="calc-lbl">Prêmio líquido</span><span class="calc-val">R$ '+fmt(d.Premio_Liquido)+'</span></div>'
+        + '</div>'
+        + gregas
+        + '<div class="score-row"><div class="sbar"><div class="sfill" style="width:'+s*10+'%;background:'+sc(s)+'"></div></div><span class="slbl" style="color:'+sc(s)+'">'+fmt(s,1)+'</span></div>'
+        + '<div class="tags">'
+          + '<span class="tag '+(d.CDI==='SUPERA'?'tag-ok':'tag-bad')+'">'+(d.CDI==='SUPERA'?'✓ CDI':'✗ CDI')+'</span>'
+          + '<span class="tag '+(!d.Sem_Oferta?'tag-ok':'tag-warn')+'">'+(!d.Sem_Oferta?'✓ Book':'⚠ Sem oferta')+'</span>'
+          + '<span class="tag tag-inf">Vol '+fmtN(d.Volume)+'</span>'
+          + (d.Bid_Volume>0?'<span class="tag tag-inf">Book '+fmtN(d.Bid_Volume)+'</span>':'')
+        + '</div>'
+      + '</div>';
+    grid.appendChild(c);
+  });
+}
+</script>
+</body>
 </html>
