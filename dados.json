@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "25/05/2026, 17:15:07",
+  "atualizado_em": "25/05/2026, 17:20:07",
   "cdi_mensal": 1.1274,
   "oportunidades": [
     {
@@ -1261,8 +1261,8 @@
       "Taxa": 0.9475,
       "Taxa_Dia": 0.0526,
       "Taxa_Mes": 1.58,
-      "Volume": 716500,
-      "Bid_Volume": 1000,
+      "Volume": 717500,
+      "Bid_Volume": 100,
       "Sem_Oferta": false,
       "Liquidez": "ALTA",
       "Score": 5.5,
@@ -1272,14 +1272,14 @@
       "Ganho_Por_Lote": 19.84,
       "Ganho_Total": 396.8,
       "Lotes_Carteira": 20,
-      "Delta": 0.32,
-      "Gamma": 0.2433,
-      "Theta": -0.0184,
-      "Vega": 0.0207,
-      "Rho": 0.0047,
-      "Poe": 29.65,
+      "Delta": 0.328,
+      "Gamma": 0.2452,
+      "Theta": -0.0187,
+      "Vega": 0.0209,
+      "Rho": 0.0049,
+      "Poe": 30.36,
       "Margin": 0,
-      "IV": 23.71,
+      "IV": 23.26,
       "Moneyness": "OTM"
     },
     {
