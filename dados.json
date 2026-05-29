@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "29/05/2026, 11:20:04",
+  "atualizado_em": "29/05/2026, 11:25:06",
   "cdi_mensal": 1.1274,
   "oportunidades": [
     {
@@ -181,7 +181,7 @@
       "Taxa": 0.8353,
       "Taxa_Dia": 0.044,
       "Taxa_Mes": 1.32,
-      "Volume": 14200,
+      "Volume": 14400,
       "Bid_Volume": 100,
       "Sem_Oferta": false,
       "Liquidez": "ALTA",
