@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "29/05/2026, 12:00:04",
+  "atualizado_em": "29/05/2026, 12:05:05",
   "cdi_mensal": 1.1274,
   "oportunidades": [
     {
@@ -174,14 +174,14 @@
       "Strike": 24.55,
       "Posicao": "OTM",
       "Dist_Strike": "+9.1%",
-      "Premio_Bruto": 0.26,
-      "IR": 0.039,
+      "Premio_Bruto": 0.27,
+      "IR": 0.0405,
       "Corretagem": 0.0246,
-      "Premio_Liquido": 0.1965,
-      "Taxa": 0.8731,
-      "Taxa_Dia": 0.046,
-      "Taxa_Mes": 1.38,
-      "Volume": 24300,
+      "Premio_Liquido": 0.205,
+      "Taxa": 0.9109,
+      "Taxa_Dia": 0.0479,
+      "Taxa_Mes": 1.44,
+      "Volume": 26900,
       "Bid_Volume": 100,
       "Sem_Oferta": false,
       "Liquidez": "ALTA",
@@ -189,8 +189,8 @@
       "CDI": "SUPERA",
       "Tipo": "CALL",
       "Estrategia": "Call Vendida",
-      "Ganho_Por_Lote": 19.65,
-      "Ganho_Total": 196.45,
+      "Ganho_Por_Lote": 20.5,
+      "Ganho_Total": 204.95,
       "Lotes_Carteira": 10,
       "Delta": 0.256,
       "Gamma": 0.1329,
@@ -199,7 +199,7 @@
       "Rho": 0.0041,
       "Poe": 22.26,
       "Margin": 0,
-      "IV": 34.32,
+      "IV": 34.86,
       "Moneyness": "OTM"
     },
     {
