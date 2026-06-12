@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "12/06/2026, 17:10:09",
+  "atualizado_em": "12/06/2026, 17:15:09",
   "cdi_mensal": 1.1274,
   "oportunidades": [
     {
@@ -638,14 +638,14 @@
       "Ganho_Por_Lote": 43.06,
       "Ganho_Total": 861.22,
       "Lotes_Carteira": 20,
-      "Delta": 0.489,
-      "Gamma": 0.252,
-      "Theta": -0.0177,
-      "Vega": 0.0245,
-      "Rho": 0.0089,
-      "Poe": 45.68,
+      "Delta": 0.479,
+      "Gamma": 0.2522,
+      "Theta": -0.0176,
+      "Vega": 0.0244,
+      "Rho": 0.0087,
+      "Poe": 44.68,
       "Margin": 0,
-      "IV": 23.71,
+      "IV": 24.49,
       "Moneyness": "OTM"
     },
     {
