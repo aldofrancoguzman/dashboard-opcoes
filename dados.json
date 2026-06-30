@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "30/06/2026, 15:35:05",
+  "atualizado_em": "30/06/2026, 15:40:06",
   "cdi_mensal": 1.109,
   "oportunidades": [
     {
@@ -337,14 +337,14 @@
       "Strike": 19.48,
       "Posicao": "OTM",
       "Dist_Strike": "-3.8%",
-      "Premio_Bruto": 0.24,
-      "IR": 0.036,
+      "Premio_Bruto": 0.25,
+      "IR": 0.0375,
       "Corretagem": 0.0195,
-      "Premio_Liquido": 0.1845,
-      "Taxa": 0.9108,
-      "Taxa_Dia": 0.0396,
-      "Taxa_Mes": 1.19,
-      "Volume": 300,
+      "Premio_Liquido": 0.193,
+      "Taxa": 0.9527,
+      "Taxa_Dia": 0.0414,
+      "Taxa_Mes": 1.24,
+      "Volume": 400,
       "Bid_Volume": 1000,
       "Sem_Oferta": false,
       "Liquidez": "ALTA",
@@ -355,7 +355,7 @@
       "Garantia_Por_Lote": 1948,
       "Lotes_Possiveis": 38,
       "Garantia_Total": 74024,
-      "Ganho_Total": 701.18,
+      "Ganho_Total": 733.48,
       "Limite_Put": 75000,
       "Pct_Limite_Usado": 98.7,
       "Delta": -0.231,
@@ -365,7 +365,7 @@
       "Rho": -0.0045,
       "Poe": 25.43,
       "Margin": 0,
-      "IV": 26.25,
+      "IV": 26.77,
       "Moneyness": "OTM"
     },
     {
