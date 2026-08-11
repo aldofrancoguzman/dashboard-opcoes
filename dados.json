@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "11/08/2026, 17:15:11",
+  "atualizado_em": "11/08/2026, 17:20:10",
   "cdi_mensal": 1.0905,
   "oportunidades": [
     {
@@ -64,7 +64,7 @@
       "Taxa": 3.51,
       "Taxa_Dia": 0.13,
       "Taxa_Mes": 3.9,
-      "Volume": 420000,
+      "Volume": 420200,
       "Bid_Volume": 100,
       "Sem_Oferta": false,
       "Liquidez": "ALTA",
@@ -408,8 +408,8 @@
       "Taxa": 2.7044,
       "Taxa_Dia": 0.1002,
       "Taxa_Mes": 3,
-      "Volume": 732400,
-      "Bid_Volume": 500,
+      "Volume": 732500,
+      "Bid_Volume": 400,
       "Sem_Oferta": false,
       "Liquidez": "ALTA",
       "Score": 6.5,
@@ -422,14 +422,14 @@
       "Ganho_Total": 2058.42,
       "Limite_Put": 75000,
       "Pct_Limite_Usado": 97.8,
-      "Delta": -0.432,
-      "Gamma": 0.1857,
+      "Delta": -0.43,
+      "Gamma": 0.1855,
       "Theta": -0.0104,
       "Vega": 0.0248,
       "Rho": -0.0097,
-      "Poe": 47.54,
+      "Poe": 47.35,
       "Margin": 0,
-      "IV": 31.07,
+      "IV": 31.25,
       "Moneyness": "ATM"
     },
     {
