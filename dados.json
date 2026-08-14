@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "14/08/2026, 17:10:10",
+  "atualizado_em": "14/08/2026, 17:15:10",
   "cdi_mensal": 1.0905,
   "oportunidades": [
     {
@@ -2501,14 +2501,14 @@
       "Ganho_Total": 783.05,
       "Limite_Put": 75000,
       "Pct_Limite_Usado": 98.3,
-      "Delta": -0.225,
-      "Gamma": 0.2156,
-      "Theta": -0.0063,
-      "Vega": 0.0169,
-      "Rho": -0.0041,
-      "Poe": 24.87,
+      "Delta": -0.208,
+      "Gamma": 0.2052,
+      "Theta": -0.0061,
+      "Vega": 0.0163,
+      "Rho": -0.0038,
+      "Poe": 23.09,
       "Margin": 0,
-      "IV": 27.63,
+      "IV": 28.73,
       "Moneyness": "OTM"
     },
     {
