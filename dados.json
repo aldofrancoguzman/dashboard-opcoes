@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "19/08/2026, 17:05:09",
+  "atualizado_em": "19/08/2026, 17:10:10",
   "cdi_mensal": 1.0905,
   "oportunidades": [
     {
@@ -182,7 +182,7 @@
       "Taxa_Dia": 0.1701,
       "Taxa_Mes": 5.1,
       "Volume": 82900,
-      "Bid_Volume": 500,
+      "Bid_Volume": 1700,
       "Sem_Oferta": false,
       "Liquidez": "ALTA",
       "Score": 6.5,
