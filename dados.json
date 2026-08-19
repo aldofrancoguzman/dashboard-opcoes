@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "19/08/2026, 17:00:11",
+  "atualizado_em": "19/08/2026, 17:05:09",
   "cdi_mensal": 1.0905,
   "oportunidades": [
     {
@@ -342,7 +342,7 @@
       "Taxa_Dia": 0.1366,
       "Taxa_Mes": 4.1,
       "Volume": 222900,
-      "Bid_Volume": 800,
+      "Bid_Volume": 1000,
       "Sem_Oferta": false,
       "Liquidez": "ALTA",
       "Score": 6.5,
@@ -508,7 +508,7 @@
       "Taxa_Dia": 0.1424,
       "Taxa_Mes": 4.27,
       "Volume": 124800,
-      "Bid_Volume": 32900,
+      "Bid_Volume": 500,
       "Sem_Oferta": false,
       "Liquidez": "ALTA",
       "Score": 6.5,
@@ -1074,7 +1074,7 @@
       "Taxa_Dia": 0.0533,
       "Taxa_Mes": 1.6,
       "Volume": 884600,
-      "Bid_Volume": 500,
+      "Bid_Volume": 100,
       "Sem_Oferta": false,
       "Liquidez": "ALTA",
       "Score": 5.5,
